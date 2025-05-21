@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convite para Paty Pazza</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #d6f0e1; /* verde claro suave */
+      color: #205955; /* verde escuro */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #ff6f61; /* coral */
+    }
+    p, label {
+      font-size: 1.2rem;
+      margin: 15px 0;
+    }
+    button {
+      background-color: #48c9b0; /* turquesa vibrante */
+      border: none;
+      padding: 12px 24px;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:disabled {
+      background-color: #a7d3ca;
+      cursor: not-allowed;
+    }
+    button:hover:enabled {
+      background-color: #36a492;
+    }
+    .hidden {
+      display: none;
+    }
+    select, input[type="text"], input[type="date"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1.5px solid #48c9b0;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      width: 250px;
+    }
+    #resumo {
+      margin-top: 20px;
+    }
+    #contador {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      color: #f7dc6f; /* amarelo vibrante */
+    }
+  </style>
+</head>
+<body>
+  <div id="pagina1">
+    <h1>Oi, Paty Pazza — a arquiteta mais linda, inteligente e cheia de luz que eu já conheci 🌿✨</h1>
+    <p>Hoje o convite é especial: montei um rolê pensado em tudo que você ama.<br>Agora é só você escolher como a gente vai curtir.</p>
+    <button onclick="proximaPagina(2)">Descobrir esse rolê pensado pra você</button>
+  </div>
+
+  <div id="pagina2" class="hidden">
+    <h1>Escolha o dia em que você vai trazer pra mim todo o brilho que Curitiba merece ter ✨🌱</h1>
+    <input type="date" id="dataEncontro" />
+    <br /><br />
+    <button id="btnData" onclick="irParaPagina3()" disabled>Escolher o jantar</button>
+  </div>
+
+  <div id="pagina3" class="hidden">
+    <h1>Jantar 🍽️</h1>
+    <p>Escolha um dos rangos abaixo em Cascavel-PR:</p>
+    <select id="jantar" onchange="validarJantar()">
+      <option value="">-- Selecione --</option>
+      <option value="Veggie Garden">Veggie Garden – Restaurante vegetariano aconchegante</option>
+      <option value="Naturalmente">Naturalmente – Comida saudável e artesanal</option>
+      <option value="Cantina Verde">Cantina Verde – Italian vibes vegetarianas</option>
+      <option value="Casa do Sabor Vegano">Casa do Sabor Vegano – Opções veganas deliciosas</option>
+      <option value="Outro">Outro (digite abaixo)</option>
+    </select><br />
+    <input type="text" id="jantarOutro" placeholder="Ex: Jantar feito por mim mesma 🌿" oninput="validarJantar()" disabled />
+    <br />
+    <button id="btnJantar" onclick="irParaPagina4()" disabled>Próximo: o pós-janta</button>
+  </div>
+
+  <div id="pagina4" class="hidden">
+    <h1>Rolê Pós-Jantar 🎉</h1>
+    <p>Escolha a vibe do pós-jantar:</p>
+    <select id="role" onchange="validarRole()">
+      <option value="">-- Selecione --</option>
+      <option value="Trilha no Parque Nacional do Iguaçu">Trilha no Parque Nacional do Iguaçu – Natureza e aventura</option>
+      <option value="Café com livros no Espaço Cultural">Café com livros no Espaço Cultural – Relax e papo inteligente</option>
+      <option value="Observação de estrelas no Morro do Capuava">Observação de estrelas no Morro do Capuava – Conexão com o universo</option>
+      <option value="Visita ao Viveiro de Plantas">Visita ao Viveiro de Plantas – Pra relaxar e aprender</option>
+      <option value="Outro">Outro (digite abaixo)</option>
+    </select><br />
+    <input type="text" id="roleOutro" placeholder="Ex: Piquenique ao pôr do sol 🌅" oninput="validarRole()" disabled />
+    <br />
+    <button id="btnRole" onclick="irParaPagina5()" disabled>Confirmar o rolê</button>
+  </div>
+
+  <div id="pagina5" class="hidden">
+    <h1>Chegamos na reta final, Paty.</h1>
+    <p>Agora só falta você aceitar esse convite feito com todo carinho e sintonia com você.</p>
+    <button onclick="proximaPagina(6)">✅ Aceito!</button>
+    <br /><br />
+    <button onclick="alert('Nem brinca, Paty! 🌿💚')">❌ Não aceito</button>
+  </div>
+
+  <div id="pagina6" class="hidden">
+    <h1>Então é isso:</h1>
+    <div id="resumo"></div>
+    <p>
+      Em exatamente <span id="contador"></span>, vou estar diante da mulher mais linda, inteligente e cheia de luz que existe.<br />
+      Pode deixar que vou estar preparado: mente aberta, playlist especial e coração acelerado 😳🌟
+    </p>
+    <br />
+    <img
+      src="https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif"
+      alt="Nature vibes"
+      width="200"
+    />
+  </div>
+
+  <script>
+    // Controle de navegação e validações
+
+    // Avança para página 2 apenas se data válida
+    const dataInput = document.getElementById('dataEncontro');
+    const btnData = document.getElementById('btnData');
+    dataInput.addEventListener('change', () => {
+      btnData.disabled = !dataInput.value;
+    });
+
+    function irParaPagina3() {
+      if (!dataInput.value) {
+        alert('Por favor, escolha uma data.');
+        return;
+      }
+      proximaPagina(3);
+    }
+
+    // Validação e habilitação botão jantar
+    function validarJantar() {
+      const jantarSelect = document.getElementById('jantar');
+      const jantarOutro = document.getElementById('jantarOutro');
+      const btnJantar = document.getElementById('btnJantar');
+
+      if (jantarSelect.value === '') {
+        btnJantar.disabled = true;
+        jantarOutro.disabled = true;
+        return;
+      }
+
+      if (jantarSelect.value === 'Outro') {
+        jantarOutro.disabled = false;
+        btnJantar.disabled = jantarOutro.value.trim() === '';
+      } else {
+        jantarOutro.disabled = true;
+        btnJantar.disabled = false;
+      }
+    }
+
+    function irParaPagina4() {
+      const jantarSelect = document.getElementById('jantar');
+      const jantarOutro = document.getElementById('jantarOutro');
+
+      if (jantarSelect.value === '') {
+        alert('Por favor, escolha uma opção de jantar.');
+        return;
+      }
+      if (jantarSelect.value === 'Outro' && jantarOutro.value.trim() === '') {
+        alert('Por favor, descreva a opção de jantar.');
+        return;
+      }
+      proximaPagina(4);
+    }
+
+    // Validação e habilitação botão pós-jantar
+    function validarRole() {
+      const roleSelect = document.getElementById('role');
+      const roleOutro = document.getElementById('roleOutro');
+      const btnRole = document.getElementById('btnRole');
+
+      if (roleSelect.value === '') {
+        btnRole.disabled = true;
+        roleOutro.disabled = true;
+        return;
+      }
+
+      if (roleSelect.value === 'Outro') {
+        roleOutro.disabled = false;
+        btnRole.disabled = roleOutro.value.trim() === '';
+      } else {
+        roleOutro.disabled = true;
+        btnRole.disabled = false;
+      }
+    }
+
+    function irParaPagina5() {
+      const roleSelect = document.getElementById('role');
+      const roleOutro = document.getElementById('roleOutro');
+
+      if (roleSelect.value === '') {
+        alert('Por favor, escolha uma opção de rolê.');
+        return;
+      }
+      if (roleSelect.value === 'Outro' && roleOutro.value.trim() === '') {
+        alert('Por favor, descreva a opção de rolê.');
+        return;
+      }
+      proximaPagina(5);
+    }
+
+    // Função para mostrar e ocultar páginas
+    function proximaPagina(numero) {
+      for (let i = 1; i <= 6; i++) {
+        const pagina = document.getElementById(`pagina${i}`);
+        if (pagina) pagina.classList.add('hidden');
+      }
+      document.getElementById(`pagina${numero}`).classList.remove('hidden');
+
+      if (numero === 6) mostrarResumo();
+    }
+
+    // Monta resumo final e inicia contador
+    function mostrarResumo() {
+      const data = document.getElementById('dataEncontro').value;
+
+      let jantar = document.getElementById('jantar').value;
+      const jantarOutro = document.getElementById('jantarOutro').value;
+      if (jantar === 'Outro' && jantarOutro.trim()) jantar = jantarOutro;
+
+      let role = document.getElementById('role').value;
+      const roleOutro = document.getElementById('roleOutro').value;
+      if (role === 'Outro' && roleOutro.trim()) role = roleOutro;
+
+      document.getElementById('resumo').innerHTML = `
+        <p>📅 <strong>Dia escolhido:</strong> ${data}</p>
+        <p>🍽️ <strong>Jantar:</strong> ${jantar}</p>
+        <p>🎉 <strong>Rolê:</strong> ${role}</p>
+      `;
+
+      iniciarContador(data);
+    }
+
+    // Contador regressivo para o dia do encontro
+    function iniciarContador(dataAlvoStr) {
+      const alvo = new Date(dataAlvoStr);
+      const timer = setInterval(() => {
+        const agora = new Date();
+        const diff = alvo - agora;
+
+        if (diff <= 0) {
+          clearInterval(timer);
+          document.getElementById('contador').textContent = 'É HOJE, PATY! 💚✨';
+          return;
+        }
+
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diff / (1000 * 60)) % 60);
+        const segundos = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('contador').textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
